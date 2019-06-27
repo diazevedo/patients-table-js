@@ -13,36 +13,35 @@ function checkWeight(weight) {
     return ( weight >= 0 && weight < 1000 );
 }
 
-let patientsTr = document.getElementsByClassName('patient');
+let $patients = document.querySelectorAll('.patient');
 
-for(let i =0; i < patientsTr.length; i++) {
+for(let i =0; i < $patients.length; i++) {
     
     let error = false;
+    let $patient = $patients[i];
 
-    let $heightTd = patientsTr[i].querySelector('.info-altura');
-    let $weightTd = patientsTr[i].querySelector('.info-peso');
-    let $imcTd = patientsTr[i].querySelector('.info-imc');
-
-    let weight = $weightTd.textContent;
-    let height = $heightTd.textContent;
+    let height = $patient.querySelector('.info-altura').textContent;
+    let weight = $patient.querySelector('.info-peso').textContent;
     
-    if(checkWeight(weight) == false) {
-        error = true;
-        console.log('Invalid Weight');
-        $weightTd.textContent = 'Invalid weight';
-    }
-
     if(checkHeight(height) == false) {
         error = true;
         console.log('Invalid height');
-        $heightTd.textContent = 'Invalid height';
+        $patient.querySelector('.info-altura').textContent = 'Invalid height';
     }
-        
+
+    if(checkWeight(weight) == false) {
+        error = true;
+        console.log('Invalid Weight');
+        $patient.querySelector('.info-peso').textContent = 'Invalid weight';
+    }
+    
     if(!error) {
         let imc = calculateIMC(height, weight);
-        $imcTd.textContent = imc.toFixed(2);
+        $patient.querySelector('.info-imc').textContent = imc.toFixed(2);
     } else {
-        $imcTd.textContent = 'Invalid data input';
+        $patient.querySelector('.info-imc').textContent = 'Invalid data';
+        $patient.classList.add('invalid-pacient');
     }
+
 }
 
