@@ -1,16 +1,24 @@
 
 var $addButton = document.querySelector('#adicionar-paciente');
 
-$addButton.addEventListener('click', function(event) {
+$addButton.addEventListener('click', event => {
 
     event.preventDefault();
     
     let $form = document.querySelector('#form-adiciona');
     let patient = patientFromForm($form);
-    let newPatientTr = createPatientTr(patient);
 
+    let errors = isPatientValid(patient);
+
+    if(errors.length > 0) {
+        mountErrorElement(errors, '#error-message', 'li');
+        return;
+    }
+     
+    let newPatientTr = createPatientTr(patient);
     document.querySelector('#table-patients').appendChild(newPatientTr);
     
+    document.querySelector('#error-message').innerHTML = "";  
     $form.reset();
 })
 
@@ -46,4 +54,23 @@ function createTd(text, elementClass) {
     td.textContent = text;
 
     return td;
+}
+
+function isPatientValid(patient) {
+
+    let errors = [];
+
+    if(patient.name.trim().length == 0)
+        errors.push('Name cannot be empty.');
+
+    if(!checkWeight(patient.weight)) 
+        errors.push('Invalid weight.');
+
+    if(!checkHeight(patient.height)) 
+        errors.push('Invalid height.');
+
+    if(patient.fat.trim().length  == 0)
+        errors.push('The value of fat is invalid.');
+
+    return errors;
 }

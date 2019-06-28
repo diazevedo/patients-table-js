@@ -8,9 +8,9 @@ function calculateIMC(height, weight) {
 }
 
 function checkHeight(height) {
-    return ( height > 0 && height < 3 );
+    return ( height.trim().length > 0 && height > 0 && height < 3 );
 }
 
 function checkWeight(weight) {
-    return ( weight >= 0 && weight < 1000 );
+    return ( weight.trim().length > 0 && weight >= 0 && weight < 1000 );
 }
