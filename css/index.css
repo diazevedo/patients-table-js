@@ -25,7 +25,7 @@ header h2{
 	vertical-align:	middle;
 }
 
-header .container:before{
+header .container:after{
 	content: '';
 	display:inline-block;
 	height: 100%;
@@ -144,4 +144,8 @@ button[disabled=disabled], button:disabled {
 .fadeOut {
 	opacity: 0;
 	transition: 1s;
+}
+
+.hidden-tr {
+	display: none;
 }
