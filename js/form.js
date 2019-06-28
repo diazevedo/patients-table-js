@@ -14,13 +14,16 @@ $addButton.addEventListener('click', event => {
         mountErrorElement(errors, '#error-message', 'li');
         return;
     }
-     
-    let newPatientTr = createPatientTr(patient);
-    document.querySelector('#table-patients').appendChild(newPatientTr);
     
+    addPatientToTable(patient);
     document.querySelector('#error-message').innerHTML = "";  
     $form.reset();
 })
+
+function addPatientToTable(patient) {
+    let newPatientTr = createPatientTr(patient);
+    document.querySelector('#table-patients').appendChild(newPatientTr);
+}
 
 function patientFromForm($form) {
     

@@ -11,13 +11,13 @@ $inputSearch.addEventListener("input", function () {
             let name = $patient.querySelector('.info-nome').textContent;
             
             if(!regExpression.test(name))
-                $patient.classList.add('hidden-tr');
+                $patient.classList.add('hidden');
             else
-                $patient.classList.remove('hidden-tr');
+                $patient.classList.remove('hidden');
 
         });
 
     } else {
-        $patients.forEach( $patient => $patient.classList.remove('hidden-tr'));
+        $patients.forEach( $patient => $patient.classList.remove('hidden'));
     } 
-});
+})

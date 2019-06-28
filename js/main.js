@@ -36,6 +36,7 @@ function mountErrorElement(errors, elementParentSelector, elementChildTag) {
     document.querySelector(elementParentSelector).innerHTML = "";
 
     let parent = document.querySelector(elementParentSelector);
+    
     errors.forEach( error => {
         let child = document.createElement(elementChildTag);
         child.textContent = error;
